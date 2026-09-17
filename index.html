@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>启德20周年｜留学人类收藏档案</title>
+<style>
+:root{
+  --bg:#0c0d10;
+  --panel:#15171c;
+  --panel2:#1b1e25;
+  --text:#f7f7f2;
+  --muted:#a7abb5;
+  --line:#30343d;
+  --accent:#f4d35e;
+  --accent2:#fff3b0;
+  --danger:#ff7a7a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:radial-gradient(circle at top,#1b1f28 0,#0c0d10 42%,#08090b 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;min-height:100%}
+body{display:flex;justify-content:center}
+.app{width:min(100%,480px);min-height:100vh;padding:18px 16px 32px;position:relative}
+.brand{font-size:12px;letter-spacing:2.2px;color:var(--accent);font-weight:800;margin-top:6px}
+.archive-tag{font-size:11px;letter-spacing:1.4px;color:#8f95a3;margin-top:4px}
+.screen{display:none;animation:fade .35s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.hero{padding-top:54px}
+.kicker{font-size:13px;color:var(--accent);letter-spacing:1.2px;margin-bottom:12px}
+h1{font-size:38px;line-height:1.08;margin:0 0 18px;font-weight:900;letter-spacing:-1.4px}
+.lead{color:#c4c7ce;line-height:1.8;font-size:16px;margin-bottom:28px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 16px 60px rgba(0,0,0,.25)}
+.btn{width:100%;border:0;border-radius:16px;padding:15px 18px;font-size:16px;font-weight:800;cursor:pointer;transition:.2s;margin-top:12px}
+.btn.primary{background:var(--accent);color:#111}
+.btn.secondary{background:#22252c;color:#fff;border:1px solid #343944}
+.btn:active{transform:scale(.985)}
+.small{font-size:12px;color:var(--muted);line-height:1.6}
+.step-title{font-size:12px;color:var(--accent);letter-spacing:1px;font-weight:800;margin-top:28px}
+.question{font-size:24px;line-height:1.35;font-weight:900;margin:12px 0 20px}
+.options{display:grid;gap:12px}
+.option{border:1px solid var(--line);background:#15171c;color:#f4f4f1;border-radius:17px;padding:16px 16px;text-align:left;font-size:15px;line-height:1.55;cursor:pointer;transition:.18s}
+.option:hover{border-color:#666b76;background:#1b1e25}
+.progress{height:6px;background:#20232a;border-radius:999px;overflow:hidden;margin-top:18px}
+.progress>div{height:100%;background:var(--accent);width:0;transition:.25s}
+.school-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.school{border:1px solid var(--line);background:#15171c;padding:15px 10px;border-radius:15px;text-align:center;font-weight:800;cursor:pointer}
+.school.selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset;color:var(--accent)}
+.loader{padding:90px 20px;text-align:center}
+.loader-ring{width:58px;height:58px;border:4px solid #292d35;border-top-color:var(--accent);border-radius:50%;margin:0 auto 22px;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.result-wrap{padding-top:24px}
+.result-card{border:1px solid #454b57;border-radius:24px;padding:22px;background:linear-gradient(180deg,#171a20 0%,#101217 100%);position:relative;overflow:hidden}
+.result-card:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(244,211,94,.08);right:-70px;top:-70px}
+.result-no{font-size:12px;letter-spacing:1.7px;color:var(--accent);font-weight:800}
+.result-name{font-size:31px;line-height:1.15;font-weight:950;margin:18px 0 8px;position:relative}
+.result-tagline{font-size:17px;line-height:1.65;color:#e3e4df;margin-bottom:18px}
+.divider{height:1px;background:#30343d;margin:18px 0}
+.meta-title{font-size:11px;color:#9399a6;letter-spacing:1.4px;margin-bottom:8px}
+.meta-text{font-size:14px;line-height:1.7;color:#d0d3d9}
+.stats{display:grid;gap:10px;margin-top:10px}
+.stat{display:grid;grid-template-columns:86px 1fr 28px;gap:8px;align-items:center;font-size:12px;color:#c4c7ce}
+.bar{height:7px;background:#282c34;border-radius:999px;overflow:hidden}.bar span{display:block;height:100%;background:var(--accent)}
+.footer-mark{margin-top:22px;font-size:11px;letter-spacing:1.4px;color:#8d929d;line-height:1.6}
+.cta{margin-top:16px;padding:16px;border-radius:18px;background:#171a20;border:1px dashed #4b515c}
+.cta strong{color:var(--accent)}
+.canvas-wrap{display:none}
+.topnote{display:flex;justify-content:space-between;align-items:center;color:#8d929d;font-size:11px;margin-top:4px}
+@media (max-width:360px){h1{font-size:32px}.question{font-size:21px}.result-name{font-size:27px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="brand">QIDE 20 YEARS</div>
+  <div class="topnote"><span>STUDY ABROAD HUMAN ARCHIVE</span><span>SYDNEY · 2026</span></div>
+
+  <section id="home" class="screen active hero">
+    <div class="kicker">启德20周年特别企划</div>
+    <h1>留学人类<br/>收藏档案</h1>
+    <p class="lead">20年了。<br/>我们见过的留学人类，真的有点多。<br/><br/>扫码进入档案库，测测你是哪一种。</p>
+    <div class="card">
+      <div style="font-weight:900;font-size:18px">你的留学人格，会是什么？</div>
+      <p class="small">8道轻量测试 · 20种留学人格 · 生成专属收藏档案</p>
+      <button class="btn primary" onclick="goSchool()">进入档案库</button>
+    </div>
+  </section>
+
+  <section id="school" class="screen">
+    <div class="step-title">STEP 01 · 身份识别</div>
+    <div class="question">你的留学服务器在哪？</div>
+    <div class="school-grid" id="schoolGrid"></div>
+    <button id="schoolNext" class="btn primary" style="opacity:.45;pointer-events:none" onclick="startQuiz()">确认服务器</button>
+    <p class="small">学校只作为档案身份前缀，不影响人格计算。</p>
+  </section>
+
+  <section id="quiz" class="screen">
+    <div class="step-title" id="stepLabel">QUESTION 01 / 08</div>
+    <div class="progress"><div id="progressBar"></div></div>
+    <div class="question" id="questionText"></div>
+    <div class="options" id="options"></div>
+  </section>
+
+  <section id="loading" class="screen loader">
+    <div class="loader-ring"></div>
+    <div style="font-size:21px;font-weight:900">正在检索你的留学档案…</div>
+    <p class="small">比对 Canvas 痕迹 / 咖啡因浓度 / DDL 生存记录 / 周末活动半径</p>
+  </section>
+
+  <section id="result" class="screen result-wrap">
+    <div id="resultCard" class="result-card"></div>
+    <button class="btn primary" onclick="downloadCard()">保存我的收藏档案</button>
+    <button class="btn secondary" onclick="restart()">再测一次</button>
+    <div class="cta">
+      <div style="font-size:16px;font-weight:900">你的档案已经入库。</div>
+      <p class="small" style="margin-bottom:0">但真正的收藏品，还在启德。<br/><strong>🎁 到启德悉尼办公室出示测试结果，解锁20周年限定礼物。</strong><br/>现场可添加启德微信，完成实体收藏。</p>
+    </div>
+  </section>
+
+  <div class="canvas-wrap"><canvas id="shareCanvas" width="1080" height="1350"></canvas></div>
+</div>
+<script>
+const schools=["UNSW","USYD","UTS","MQ","WSU","Other"];
+const schoolGrid=document.getElementById('schoolGrid');
+let selectedSchool='';
+schools.forEach(s=>{
+  const el=document.createElement('div'); el.className='school'; el.textContent=s;
+  el.onclick=()=>{document.querySelectorAll('.school').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');selectedSchool=s;const b=document.getElementById('schoolNext');b.style.opacity='1';b.style.pointerEvents='auto'};
+  schoolGrid.appendChild(el);
+});
+
+const results=[
+{id:1,name:'DDL猎人',line:'Deadline越近，战斗力越强。',spot:'Canvas · Library · 23:59',note:'TA不是拖延，只是在等战斗BGM响起。',stats:[92,88,35,76]},
+{id:2,name:'赛博难民',line:'人在澳洲，灵魂常驻电脑。',spot:'Zoom · Notion · 浏览器27个标签页',note:'现实世界偶尔登录，线上世界长期在线。',stats:[78,91,42,68]},
+{id:3,name:'吸血鬼',line:'见不得光，不到万不得已不出门。',spot:'卧室 · 夜间超市 · 外卖门口',note:'阳光不是刚需，Wi‑Fi才是。',stats:[54,74,22,93]},
+{id:4,name:'饭灵根',line:'什么都可以没有，但美食不可以。',spot:'Chinatown · 食堂 · 收藏夹',note:'学习是主线，美食是续命支线。',stats:[46,82,88,62]},
+{id:5,name:'熬夜战神',line:'白天失踪，凌晨登场。',spot:'凌晨2:17 · Word文档 · 冰箱前',note:'越晚越清醒，越困越有灵感。',stats:[80,72,38,96]},
+{id:6,name:'续命仙人',line:'咖啡一杯，生命续费一天。',spot:'校园咖啡店 · 便利店 · 手边',note:'血液成分复杂，咖啡因占比可疑。',stats:[73,84,50,83]},
+{id:7,name:'DDL召唤师',line:'Deadline一响，隐藏技能全部解锁。',spot:'群聊 · Google Docs · 电脑充电口',note:'平时像NPC，DDL来了秒变主角。',stats:[88,81,61,79]},
+{id:8,name:'学分猎人',line:'选课像刷副本，学分必须拿下。',spot:'myUNSW · Handbook · Excel课表',note:'对课程代码的熟悉程度高于部分老师。',stats:[95,69,47,58]},
+{id:9,name:'闪现玩家',line:'上课闪现，下课消失，周末跨城。',spot:'教室门口 · 车站 · 机场',note:'出现过，但不保证一直在线。',stats:[58,77,90,55]},
+{id:10,name:'通勤忍者',line:'背着电脑在城市里高速移动。',spot:'Light Rail · Bus · Train',note:'每天最稳定的课程叫通勤。',stats:[67,72,74,66]},
+{id:11,name:'图书馆幽灵',line:'每天都在，但没人知道到底在干嘛。',spot:'Library Level 4 · 插座旁 · 靠窗位',note:'存在感很低，出勤率很高。',stats:[89,64,31,68]},
+{id:12,name:'咖啡信徒',line:'咖啡因是唯一稳定的信仰。',spot:'Long black · Iced latte · 第二杯',note:'没有咖啡解决不了的事，除非需要第三杯。',stats:[70,90,63,79]},
+{id:13,name:'周末逃兵',line:'一到周末，学校自动从人生里消失。',spot:'海边 · 周边小镇 · Google Maps',note:'周一属于学校，周末属于澳洲。',stats:[48,83,97,49]},
+{id:14,name:'拖延刺客',line:'平时毫无动静，最后一刻精准出手。',spot:'23:41 · 23:52 · Submit前30秒',note:'TA的计划一直都在，只是执行时间比较刺激。',stats:[86,75,34,88]},
+{id:15,name:'凌晨玩家',line:'太阳下山之后，人生正式开始。',spot:'夜间厨房 · 电脑桌 · 24h便利店',note:'白天是加载界面，晚上才进入主程序。',stats:[62,73,51,94]},
+{id:16,name:'Deadline囤积户',line:'一个DDL不够，要同时拥有五个。',spot:'Calendar · Canvas · 待办清单',note:'收藏DDL的数量，稳定超过收藏景点。',stats:[91,80,28,82]},
+{id:17,name:'校园野生人',line:'没课的时候消失，有饭的时候出现。',spot:'草坪 · 食堂 · 朋友消息里',note:'活动范围随机，但对“去哪吃”高度敏感。',stats:[45,68,86,57]},
+{id:18,name:'低电量NPC',line:'电量10%，精神5%，还能继续走。',spot:'教室最后一排 · 公交靠窗 · 床',note:'状态栏常红，但任务仍然推进。',stats:[59,61,36,97]},
+{id:19,name:'随机刷新怪',line:'今天卷学习，明天突然旅游，版本完全随机。',spot:'Library / Beach / IKEA / Airport',note:'生活没有固定版本，主打一个随机更新。',stats:[66,79,93,61]},
+{id:20,name:'平行时空人',line:'身体在上课，脑子已经下课。',spot:'Lecture · 手机屏幕 · 想象中的周末',note:'人已签到，灵魂另有安排。',stats:[52,70,78,84]}
+];
+
+// 每个答案给若干人格加分。20个人格都能被命中，且避免简单“总分分段”。
+const questions=[
+{q:'Canvas突然弹出：Assignment due tomorrow。你的第一反应？',a:[
+ ['明天？那不是还有一天吗',[14,1,7,16]],
+ ['打开文档，先把标题写上',[8,11,1,16]],
+ ['群里问一句：“你们开始了吗？”',[7,20,18,2]],
+ ['先买杯咖啡，仪式感不能少',[6,12,5,15]]]},
+{q:'下午2点，突然发现今天没课。你最可能？',a:[
+ ['去图书馆，不能浪费这一天',[11,8,1,16]],
+ ['回家。床在召唤我',[3,18,15,20]],
+ ['打开小红书搜“悉尼周边一日游”',[13,19,9,17]],
+ ['先问一句：有人吃饭吗？',[4,17,19,9]]]},
+{q:'你的手机只剩10%电，你会优先保谁？',a:[
+ ['Canvas / Moodle',[8,1,16,11]],
+ ['Google Maps',[10,9,13,19]],
+ ['小红书 / Instagram',[19,17,20,2]],
+ ['外卖 / 咖啡积分软件',[4,6,12,18]]]},
+{q:'凌晨1:47，你最可能正在？',a:[
+ ['和Word文档进行最后的决斗',[5,14,1,7]],
+ ['刷手机并说“再看五分钟”',[15,20,18,3]],
+ ['吃东西',[4,17,15,19]],
+ ['已经睡了，你们的世界与我无关',[8,10,11,13]]]},
+{q:'Group Assignment群里突然安静了，你会？',a:[
+ ['默默把自己那部分先做完',[8,11,1,16]],
+ ['发一句：“Guys any updates?”',[7,10,2,18]],
+ ['先等等，也许会有人说话',[14,20,18,3]],
+ ['算了，我来建个Google Doc吧',[7,2,8,1]]]},
+{q:'周末最理想的打开方式是？',a:[
+ ['海边/徒步/周边小旅行',[13,19,9,10]],
+ ['睡到自然醒，哪都不去',[3,18,15,20]],
+ ['探店！最好一天吃三家',[4,17,12,19]],
+ ['补作业/复习/把下周安排好',[8,11,16,1]]]},
+{q:'下面哪句话最像你的留学状态？',a:[
+ ['“我其实挺自律的，只是最近有点忙。”',[14,16,1,5]],
+ ['“我今天必须早点睡。”',[5,15,18,3]],
+ ['“周末去哪？”',[13,19,9,17]],
+ ['“先喝杯咖啡再说。”',[6,12,2,18]]]},
+{q:'如果留学生活是一款游戏，你最像哪种玩家？',a:[
+ ['任务党：学分、DDL、出勤都要清',[8,1,16,11]],
+ ['探索党：地图能亮多少亮多少',[13,19,9,10]],
+ ['生存党：先保证今天能正常运转',[18,6,12,4]],
+ ['随缘党：今天是什么版本我也不知道',[19,20,17,3]]]},
+];
+
+let qIndex=0; let scores=Array(21).fill(0); let currentResult=null;
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function goSchool(){show('school')}
+function startQuiz(){qIndex=0;scores=Array(21).fill(0);show('quiz');renderQuestion()}
+function renderQuestion(){
+ const item=questions[qIndex];document.getElementById('stepLabel').textContent=`QUESTION ${String(qIndex+1).padStart(2,'0')} / ${String(questions.length).padStart(2,'0')}`;
+ document.getElementById('progressBar').style.width=`${(qIndex/questions.length)*100}%`;document.getElementById('questionText').textContent=item.q;
+ const box=document.getElementById('options');box.innerHTML='';item.a.forEach(([text,ids])=>{const b=document.createElement('button');b.className='option';b.textContent=text;b.onclick=()=>answer(ids);box.appendChild(b)});
+}
+function answer(ids){ids.forEach((id,i)=>scores[id]+=4-i);qIndex++;if(qIndex<questions.length){renderQuestion()}else{document.getElementById('progressBar').style.width='100%';finish()}}
+function finish(){show('loading');setTimeout(()=>{let max=Math.max(...scores.slice(1));let candidates=[];scores.forEach((s,i)=>{if(i>0&&s===max)candidates.push(i)});const chosen=candidates[Math.floor(Math.random()*candidates.length)];currentResult=results.find(r=>r.id===chosen);renderResult();show('result')},1450)}
+function renderResult(){const r=currentResult;const school=selectedSchool==='Other'?'AU':selectedSchool;document.getElementById('resultCard').innerHTML=`
+ <div class="result-no">ARCHIVE No.${String(r.id).padStart(2,'0')} / 20</div>
+ <div class="result-name">${school} · ${r.name}</div>
+ <div class="result-tagline">${r.line}</div>
+ <div class="divider"></div>
+ <div class="meta-title">常见出没地</div><div class="meta-text">${r.spot}</div>
+ <div class="divider"></div>
+ <div class="meta-title">档案属性</div>
+ <div class="stats">
+ ${[['DDL感知力',r.stats[0]],['续命能力',r.stats[1]],['周末活跃度',r.stats[2]],['夜间存活率',r.stats[3]]].map(([n,v])=>`<div class="stat"><span>${n}</span><div class="bar"><span style="width:${v}%"></span></div><b>${v}</b></div>`).join('')}
+ </div>
+ <div class="divider"></div>
+ <div class="meta-title">研究员备注</div><div class="meta-text">${r.note}</div>
+ <div class="footer-mark">COLLECTED · SYDNEY · 2026<br><br><b style="color:#e8e8e3">20年，见过很多种留学人生。<br>今天，收藏到了你。</b><br><br>QIDE 20 YEARS · ARCHIVED</div>`;
+}
+function restart(){qIndex=0;scores=Array(21).fill(0);currentResult=null;selectedSchool='';document.querySelectorAll('.school').forEach(x=>x.classList.remove('selected'));const b=document.getElementById('schoolNext');b.style.opacity='.45';b.style.pointerEvents='none';show('home')}
+function roundRect(ctx,x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}}
+function wrapText(ctx,text,x,y,maxWidth,lineHeight){let line='';let yy=y;for(const ch of text){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){ctx.fillText(line,x,yy);line=ch;yy+=lineHeight}else line=test;}if(line)ctx.fillText(line,x,yy);return yy}
+function downloadCard(){
+ const c=document.getElementById('shareCanvas'),ctx=c.getContext('2d'),r=currentResult,school=selectedSchool==='Other'?'AU':selectedSchool;
+ ctx.fillStyle='#0c0d10';ctx.fillRect(0,0,c.width,c.height);
+ const g=ctx.createLinearGradient(0,0,0,c.height);g.addColorStop(0,'#1b1f28');g.addColorStop(1,'#0b0c0f');ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);
+ ctx.fillStyle='#f4d35e';ctx.font='700 30px Arial';ctx.fillText('QIDE 20 YEARS',72,90);
+ ctx.fillStyle='#8f95a3';ctx.font='22px Arial';ctx.fillText(`ARCHIVE No.${String(r.id).padStart(2,'0')} / 20`,72,145);
+ roundRect(ctx,58,195,964,1040,42,'#14171d','#424852');
+ ctx.fillStyle='#f4d35e';ctx.font='700 28px Arial';ctx.fillText('STUDY ABROAD HUMAN ARCHIVE',104,260);
+ ctx.fillStyle='#ffffff';ctx.font='900 66px Arial';ctx.fillText(`${school} · ${r.name}`,104,370);
+ ctx.fillStyle='#e4e5df';ctx.font='34px Arial';wrapText(ctx,r.line,104,440,820,54);
+ ctx.strokeStyle='#313640';ctx.beginPath();ctx.moveTo(104,540);ctx.lineTo(930,540);ctx.stroke();
+ ctx.fillStyle='#9ba1ad';ctx.font='22px Arial';ctx.fillText('常见出没地',104,605);ctx.fillStyle='#e3e4df';ctx.font='28px Arial';wrapText(ctx,r.spot,104,650,820,44);
+ ctx.fillStyle='#9ba1ad';ctx.font='22px Arial';ctx.fillText('研究员备注',104,790);ctx.fillStyle='#e3e4df';ctx.font='28px Arial';wrapText(ctx,r.note,104,838,820,44);
+ ctx.fillStyle='#8f95a3';ctx.font='22px Arial';ctx.fillText('COLLECTED · SYDNEY · 2026',104,1035);
+ ctx.fillStyle='#fff';ctx.font='700 29px Arial';ctx.fillText('20年，见过很多种留学人生。',104,1100);ctx.fillText('今天，收藏到了你。',104,1145);
+ ctx.fillStyle='#f4d35e';ctx.font='700 22px Arial';ctx.fillText('QIDE 20 YEARS · ARCHIVED',104,1196);
+ const a=document.createElement('a');a.download=`QIDE_${school}_${r.name}.png`;a.href=c.toDataURL('image/png');a.click();
+}
+</script>
+</body>
+</html>
